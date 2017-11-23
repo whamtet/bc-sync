@@ -21,7 +21,9 @@
     (fn []
       (let [[username password] @creds]
         [view {:style {:flex-direction "column" :margin 40 :align-items "center"}}
-         [text {:style {:font-size 30 :font-weight "100" :margin-bottom 20 :text-align "center"}}
+         [text {:style {:font-size 20 :font-weight "100" :margin-bottom 20 :text-align "center"}}
+          "British Council MyClass Calendar Sync"]
+         #_[text {:style {:font-size 15 :font-weight "100" :margin-bottom 20 :text-align "center"}}
           "Enter Username and Password"]
          [image {:source logo-img :style {:width 80 :height 80 :margin-bottom 30}}]
          [text-input {:style {:height 40 :border-color "gray" :border-width 1 :width 300 :padding 10}
@@ -32,7 +34,7 @@
                       :secure-text-entry true}]
          [touchable-highlight {:style {:background-color "#999" :padding 10 :border-radius 5
                                        :margin-top 10}
-                               :on-press #(http/update-classes username password)}
+                               :on-press #(dispatch [:update-calendar username password])}
           [text {:style {:color "white" :text-align "center" :font-weight "bold"}} "Go"]]
          ]))))
 

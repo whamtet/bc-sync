@@ -10,3 +10,8 @@
   :get-creds
   (fn [db _]
     [(:username db) (:password db)]))
+
+(reg-sub
+  :loading?
+  (fn [db _]
+    (:loading? db)))

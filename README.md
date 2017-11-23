@@ -1,19 +1,7 @@
-# future-app
+# British Council Calendar Sync
 
-Run iOS app:
-react-native run-ios > /dev/null
+Currently deployed to [Google Play](https://play.google.com/store/apps/details?id=com.futureapp), this app is a simple demo of cross platform apps built using React Native and Clojurescript.  The app can easily be built to run on IOS and Windows Phone, instructions are available at [RE Natal](https://github.com/drapanjanas/re-natal).
 
-To use figwheel type:
-re-natal use-figwheel
-lein figwheel ios
+![](Screenshot1.jpg)
 
-Reload the app in simulator (⌘ + R)
-
-At the REPL prompt type this:
-(in-ns 'future-app.ios.core)
-
-Changes you make via the REPL or by changing your .cljs files should appear live.
-
-Try this command as an example:
-(dispatch [:set-greeting "Hello Native World!"])
-
+The app's functionality is simple: users enter their British Council MyClass credentials.  The app makes a POST request to the login endpoint to obtain a session token and then obtains the users' class schedule from a JSON endpoint.  The classes are added to the phone's calendar.

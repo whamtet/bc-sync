@@ -1,6 +1,7 @@
 (ns future-app.http
   (:require
-    [future-app.calendar :as calendar])
+    [future-app.calendar :as calendar]
+    [re-frame.core :refer [subscribe dispatch dispatch-sync]])
   (:require-macros
     [future-app.macros :refer [promise->]]))
 
@@ -21,6 +22,7 @@
                      :credentials "include"}))
     (.json then)
     (let [edn (js->clj then)]
+      (dispatch [:finish-loading])
       (if (get edn "session_expired")
         (js/alert "Incorrect username or password.  Try again")
         (promise-> (calendar/update-classes edn) (js/alert "Updated"))))))

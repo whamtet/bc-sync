@@ -2,7 +2,8 @@
   (:require
    [re-frame.core :refer [reg-event-db after]]
    [clojure.spec.alpha :as s]
-   [future-app.db :as db :refer [app-db]]))
+   [future-app.db :as db :refer [app-db]]
+   [future-app.http :as http]))
 
 ;; -- Interceptors ------------------------------------------------------------
 ;;
@@ -41,3 +42,14 @@
  :set-greeting
  (fn [db [_ value]]
    (assoc db :greeting value)))
+
+(reg-event-db
+ :update-calendar
+ (fn [db [_ username password]]
+   (http/update-classes username password)
+   (assoc db :loading? true)))
+
+(reg-event-db
+  :finish-loading
+  (fn [db _]
+    (dissoc db :loading?)))
